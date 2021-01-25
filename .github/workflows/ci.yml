@@ -33,7 +33,7 @@ jobs:
           builder: ${{ steps.builder1.outputs.name }}
           target: generator
           context: .
-          file: ../../Dockerfile
+          # file: ../Dockerfile
           tags: |
             egafosso/generator:latest
       -
@@ -43,7 +43,7 @@ jobs:
           builder: ${{ steps.builder2.outputs.name }}
           target: solver
           context: .
-          file: ../../Dockerfile
+          #          file: ../Dockerfile
           tags: |
             egafosso/solver:latest
 
