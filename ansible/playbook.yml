@@ -1,0 +1,77 @@
+- name: interview
+  hosts: localhost
+  become: true
+  remote_user: ec2-user
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
+      - python-pip
+      - virtualenv
+      - python3-setuptools
+
+    containers:
+      - name: generator
+        image: egafosso/generator
+        port: "5000:5000"
+      - name: solver
+        image: egafosso/solver
+        port: "5001:5001"
+
+  tasks:
+
+    - name: Install required system packages
+      apt: 
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop: "{{ packages }}"
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt: 
+        name: docker-ce 
+        state: latest
+        update_cache: yes 
+
+    - name: unInstall Docker-py Module for Python
+      pip:
+        name: docker-py
+        state: absent
+
+    - name: unInstall Docker Module for Python
+      pip:
+        name: docker
+        state: absent
+
+    - name: Install Docker-py Module for Python ALONE
+      pip:
+        name: docker-py
+        state: present
+
+    - name: Start Docker Engine
+      systemd:
+        name: docker
+        state: started
+
+    - name: Run generator and solver containers
+      docker_container:
+        name: "{{ item.name}}"
+        image: "{{ item.image }}"
+        ports: "{{ item.port }}"
+        state: started
+        pull: yes
+        detach: yes
+      loop: "{{ containers }}"
+
