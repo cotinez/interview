@@ -5,9 +5,9 @@
 
 ## STEP 1: A small python program
 
-INSTRUCTIONS: Pull or clone the repo to execute locally
+Pull or clone the repository to execute locally
 
-
+RUN:
 $ python generator-server/src/server.py
 
 $ python solver-server/src/solver_server.py
