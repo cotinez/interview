@@ -32,18 +32,13 @@ jobs:
         with:
           builder: ${{ steps.builder1.outputs.name }}
           target: generator
-          # context: .
-          # file: ../Dockerfile
-          #tags: |
-          # egafosso/generator:latest
+          push: true
+          tags: egafosso/generator:latest
       -
         name: Build against builder2
         uses: docker/build-push-action@v2
         with:
           builder: ${{ steps.builder2.outputs.name }}
           target: solver
-          # context: .
-          #          file: ../Dockerfile
-          #tags: |
-          # egafosso/solver:latest
-
+          push: true
+          tags: egafosso/solver:latest
