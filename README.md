@@ -48,7 +48,7 @@ $ docker pull egafosso/solver
 
 
 ## STEP 4: Ansible automation
-Note: An ubunu EC2 instance has been used to write and test this playbook.
+Note: An ubuntu EC2 instance has been used to write and test this playbook instead of Vagrant VM.
 "ansible" folder in the repository contains :
 - Inventory folder containing an INI inventory file (with localhost only as managed host)
 - configuration file (ansible.cfg)
