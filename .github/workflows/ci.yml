@@ -32,8 +32,8 @@ jobs:
         with:
           builder: ${{ steps.builder1.outputs.name }}
           target: generator
-          context: .
-          file: ./Dockerfile
+          #         context: .
+          #          file: ./Dockerfile
           tags: |
             egafosso/generator:latest
       -
@@ -42,8 +42,8 @@ jobs:
         with:
           builder: ${{ steps.builder2.outputs.name }}
           target: solver
-          context: .
-          file: ./Dockerfile
+          #          context: .
+          #          file: ./Dockerfile
           tags: |
             egafosso/solver:latest
 
