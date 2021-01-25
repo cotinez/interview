@@ -43,6 +43,7 @@ The .github/workflows/ci.yml file
 RUN:
 
 $ docker pull egafosso/generator
+
 $ docker pull egafosso/solver
 
 
