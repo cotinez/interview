@@ -8,6 +8,7 @@
 Pull or clone the repository to execute locally
 
 RUN:
+
 $ python generator-server/src/server.py
 
 $ python solver-server/src/solver_server.py
@@ -18,6 +19,7 @@ $ python solver-server/src/solver_server.py
 ## STEP 2: Dockerizing the program
 
 RUN:
+
 $ docker build -t generator --target generator .
 
 $ docker run -p 5000:5000 -d generator
@@ -39,6 +41,7 @@ $ docker-compose up -d
 The .github/workflows/ci.yml file
 
 RUN:
+
 $ docker pull egafosso/generator
 $ docker pull egafosso/solver
 
@@ -53,6 +56,7 @@ Note: An ubunu EC2 instance has been used to write and test this playbook.
 They play is directly applied to localhost in this play as inventory contains no managed host.
 
 RUN:
+
 $ ansible-playbook -vv ansible/playbook.yml
 
 
